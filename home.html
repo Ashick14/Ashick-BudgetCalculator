@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-image: url('https://unbounce.com/photos/Gradient-Background.png');">
+    <nav style="background-color: #8578fc;" class="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="https://cdn-icons-png.flaticon.com/512/666/666201.png" alt="Logo" width="30" height="27" class="d-inline-block align-text-top">
+            <span id="user" class="text-light ms-3"></span>
+          </a>
+          <button onclick="logout()" class="btn btn-danger rounded">Log out</button>
+        </div>
+      </nav>
+    <div class="container-fluid">
+    <div class="row">
+        <p class="text-center text-dark" id="usernameDisplay"></p>
+        <div class="col-1"></div>
+        <div style="background-color: #CECEF0;" class="col-10  border border-dark rounded-4 shadow-lg mt-5">
+            <h1 style="color: rgb(112, 0, 218);" class="text-center mt-3">BUDGET CALCULATOR</h1>
+            
+            <div class="row">
+                <div class="col-5 mt-5 ms-5 me-5 border shadow mb-5 border-success bg-light">
+                    <h3 class="text-center mt-3">INCOME</h3>
+                <div>
+                    <input id="iType" placeholder="Income Type" class="form-control mt-4" type="text">
+                </div>
+                <div>
+                    <input id="iAmnt" placeholder="Amount" class="form-control mt-3" type="text">
+                </div>
+                <div class="col-6 d-grid gap-2 mx-auto text-center">
+                    <button onclick="addIncome()" class="btn btn-success mt-4 mb-5 px-3">ADD</button>
+                </div>
+                </div>
+
+                <div class="col-5 mt-5 ms-5 border shadow mb-5 border-danger bg-light">
+                    <h3 class="text-center mt-3">EXPENSE</h3>
+                <div>
+                    <input id="eType" placeholder="Expense Type" class="form-control mt-4" type="text">
+                </div>
+                <div>
+                    <input id="eAmnt" placeholder="Amount" class="form-control mt-3" type="text">
+                </div>
+                <div class="col-6 d-grid gap-2 mx-auto text-center">
+                    <button onclick="addExpense()" class="btn btn-danger mt-4 mb-5 px-3">SUBMIT</button>
+                </div>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-3 p-3 border rounded shadow bg-success ms-4 mb-5 me-3" >
+                <h5 class="text-center text-light ">Total Income:</h5>
+                <h5 id="tIncome" class="text-center text-light">---</h5>
+            </div>
+            <div class="col-3 p-3 border rounded shadow bg-primary mb-5 me-3">
+                <h5 class="text-center text-light ">Savings:</h5>
+                <h5 id="savings" class="text-center text-light">---</h5>
+            </div>
+            <div class="col-3 p-3 border rounded shadow bg-danger mb-5">
+                <h5 class="text-center text-light ">Total Expense:</h5>
+                <h5 id="tExpense" class="text-center text-light">---</h5>
+                
+            </div>
+            <div  class="text-center mb-5">
+            <a id="viewM" hidden onclick="viewMore()" style="text-decoration: none;" href="#tables"><span class="fs-5" style="color: rgb(112, 0, 218);">View More</span></a>
+            <a id="viewL"  onclick="viewLess()" style="text-decoration: none;" href="#viewM"><span class="fs-5" style="color: rgb(112, 0, 218);">View Less</span></a>
+            <!-- <button onclick="refresh()" class="btn btn-primary rounded-pill float-end me-3"><i class="fa fa-refresh" aria-hidden="true"></i></button> -->
+            
+            </div>
+                
+            
+            <section id="tables">
+                <button onclick="cleared()" class="btn btn-warning rounded-pill float-end me-3 mb-4 px-3">Clear</button>
+                <div class="row">
+                    <h3 class="text-center mb-4">History</h3>
+                    
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Income Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody id="iDetails">
+
+                            </tbody>
+                           
+                          </table>
+                    </div>
+                    <div class="col-5 ms-4">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Expense Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody id="eDetails">
+
+                            </tbody>
+                          </table>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </section>
+
+        </div>
+            <div class="col-1"></div>
+       
+           
+        </div> 
+        
+    
+
+        <footer style="background-color: #8578fc;" class=" text-center text-lg-start mt-5">
+            <!-- Copyright -->
+            <div class="text-center text-light p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+              © 2023 Copyright:
+              <a style="text-decoration: none; font-size: large;" class="text-body " href="./index.html"><span class="text-light">Budget Calculator</span></a>
+              
+            </div>
+            <!-- Copyright -->
+          </footer>
+        
+    
+    
+</body>
+<script src="./script.js">
+    
+</script>
+</html>
